@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memoria y Calculo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+
+<body>
+    <div id="setup-screen">
+        <h1>Memoria y Calculo</h1>
+        <div>
+            <label for="num-count">Cantidad de numeros:</label>
+            <input type="number" id="num-count" value="5" min="2">
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" id="allow-negatives" checked>
+                Permitir numeros negativos
+            </label>
+        </div>
+        <div>
+            <label>Nivel de dificultad:</label>
+            <button type="button" class="difficulty-btn" data-time="2">Facil (2 s)</button>
+            <button type="button" class="difficulty-btn" data-time="1.5">Medio (1.5 s)</button>
+            <button type="button" class="difficulty-btn" data-time="1">Dificil (1 s)</button>
+        </div>
+        <div>
+            <p>Rangos numericos:</p>
+            <ul>
+                <li>Facil: -10 a 20</li>
+                <li>Medio: -20 a 40</li>
+                <li>Dificil: -40 a 80</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="game-screen" style="display: none;">
+        <div id="number-display"></div>
+    </div>
+
+    <div id="input-screen" style="display: none;">
+        <h2>¿Cual es la suma final?</h2>
+        <input type="number" id="user-answer" autofocus>
+        <button id="submit-answer">Confirmar</button>
+    </div>
+
+    <div id="result-screen" style="display: none;">
+        <div id="result-message"></div>
+        <button id="restart-game">Jugar de Nuevo</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
