@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Pesos a Dolares</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+
+<body>
+    <div>
+        <h1>Conversor de Pesos a Dolares</h1>
+
+        <div>
+            <label for="ars-input">Monto en pesos (ARS):</label>
+            <input type="number" id="ars-input" placeholder="Ej: 15000" min="0">
+            <button id="calc-btn">Calcular</button>
+        </div>
+
+        <table id="results-table">
+            <thead>
+                <tr>
+                    <th>Tipo de Dolar</th>
+                    <th>Compra</th>
+                    <th>Venta</th>
+                    <th>USD (Compra)</th>
+                    <th>USD (Venta)</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
