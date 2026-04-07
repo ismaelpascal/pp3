@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trivia</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+
+<body>
+    <div id="setup-screen">
+        <h1>Categoria:</h1>
+        <select name="categoria" id="categoria">
+            <option value="">Seleccione</option>
+            <option value="Historia">Historia</option>
+            <option value="Geografía">Geografía</option>
+            <option value="Ciencia">Ciencia</option>
+            <option value="Deportes">Deportes</option>
+            <option value="Tecnología">Tecnología</option>
+            <option value="Matemática">Matemática</option>
+        </select>
+        <button id="start-btn">Iniciar</button>
+    </div>
+
+    <div id="game-screen" style="display: none;">
+        <h2 id="pregunta-numero"></h2>
+        <p id="pregunta-texto"></p>
+        <div id="opciones-container"></div>
+        <div id="feedback-container"></div>
+        <button id="next-btn" style="display: none;">Siguiente Pregunta</button>
+    </div>
+
+    <div id="result-screen" style="display: none;">
+        <h1>Resumen de la Partida</h1>
+        <p>Total de preguntas: <span id="total-preguntas"></span></p>
+        <p>Correctas: <span id="correctas-count" style="color: #2ecc71;"></span></p>
+        <p>Incorrectas: <span id="incorrectas-count" style="color: #e74c3c;"></span></p>
+        <button id="restart-game">Jugar de Nuevo</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
