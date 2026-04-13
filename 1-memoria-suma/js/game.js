@@ -25,49 +25,24 @@ function updateDifficultyColor() {
     const activeSpeedBtn = document.querySelector('.speed-selection .option-btn.active');
     const activeRangeBtn = document.querySelector('.range-selection .option-btn.active');
 
-    let speedPoints = 1;
-    let rangePoints = 1;
-
-    if (activeSpeedBtn) {
-        const time = activeSpeedBtn.getAttribute('data-time');
-        if (time == "2") speedPoints = 1;
-        else if (time == "1.5") speedPoints = 2;
-        else if (time == "1") speedPoints = 3;
-    }
-
-    if (activeRangeBtn) {
-        const rangeType = activeRangeBtn.getAttribute('data-range');
-        if (rangeType === 'easy') rangePoints = 1;
-        else if (rangeType === 'medium') rangePoints = 2;
-        else if (rangeType === 'hard') rangePoints = 3;
-    }
-
+    // Mapear los botones por su índice para obtener puntos fijos (1, 2 o 3)
+    const speedPoints = Array.from(speedButtons).indexOf(activeSpeedBtn) + 1 || 1;
+    const rangePoints = Array.from(rangeButtons).indexOf(activeRangeBtn) + 1 || 1;
+    
     const totalPoints = speedPoints + rangePoints; // 2 to 6
 
-    let primaryColor, glowColor;
+    const colors = {
+        2: { p: '#00ff80', g: 'rgba(0, 255, 128, 0.4)' },
+        3: { p: '#b3ff00', g: 'rgba(179, 255, 0, 0.4)' },
+        4: { p: '#ffe600', g: 'rgba(255, 230, 0, 0.4)' },
+        5: { p: '#ff8000', g: 'rgba(255, 128, 0, 0.4)' },
+        6: { p: '#ff0040', g: 'rgba(255, 0, 64, 0.4)' }
+    };
 
-    if (totalPoints === 2) {
-        primaryColor = '#00ff80';
-        glowColor = 'rgba(0, 255, 128, 0.4)';
-    } else if (totalPoints === 3) {
-        primaryColor = '#b3ff00';
-        glowColor = 'rgba(179, 255, 0, 0.4)';
-    } else if (totalPoints === 4) {
-        primaryColor = '#ffe600';
-        glowColor = 'rgba(255, 230, 0, 0.4)';
-    } else if (totalPoints === 5) {
-        primaryColor = '#ff8000';
-        glowColor = 'rgba(255, 128, 0, 0.4)';
-    } else if (totalPoints === 6) {
-        primaryColor = '#ff0040';
-        glowColor = 'rgba(255, 0, 64, 0.4)';
-    } else {
-        primaryColor = '#00ff80';
-        glowColor = 'rgba(0, 255, 128, 0.4)';
-    }
+    const { p = colors[2].p, g = colors[2].g } = colors[totalPoints] || {};
 
-    document.documentElement.style.setProperty('--primary', primaryColor);
-    document.documentElement.style.setProperty('--primary-glow', glowColor);
+    document.documentElement.style.setProperty('--primary', p);
+    document.documentElement.style.setProperty('--primary-glow', g);
 }
 
 function setupButtonGroup(buttons) {
@@ -143,20 +118,9 @@ function startGame(selectedInterval, rangeType) {
     const intervalMs = parseFloat(selectedInterval) * 1000;
     const allowNegative = allowNegativesCheckbox.checked;
 
-    let min, max;
-    if (rangeType === 'easy') {
-        min = allowNegative ? -10 : 1;
-        max = 20;
-    } else if (rangeType === 'medium') {
-        min = allowNegative ? -20 : 1;
-        max = 40;
-    } else if (rangeType === 'hard') {
-        min = allowNegative ? -40 : 1;
-        max = 80;
-    } else {
-        min = 1;
-        max = 10;
-    }
+    const ranges = { easy: [-10, 20], medium: [-20, 40], hard: [-40, 80] };
+    let [min, max] = ranges[rangeType] || [1, 10];
+    if (!allowNegative) min = 1;
 
     const data = generateSequence(count, min, max);
     sequence = data.seq;
