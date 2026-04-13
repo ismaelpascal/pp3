@@ -5,54 +5,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memoria y Calculo</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="setup-screen">
-        <h1>Memoria y Calculo</h1>
-        <div>
-            <label for="num-count">Cantidad de numeros:</label>
-            <input type="number" id="num-count" value="5" min="2">
-        </div>
-        <div>
-            <label>
-                <input type="checkbox" id="allow-negatives" checked>
-                Permitir numeros negativos
-            </label>
-        </div>
-        <div>
-            <label>Nivel de dificultad:</label>
-            <button type="button" class="difficulty-btn" data-time="2">Facil (2 s)</button>
-            <button type="button" class="difficulty-btn" data-time="1.5">Medio (1.5 s)</button>
-            <button type="button" class="difficulty-btn" data-time="1">Dificil (1 s)</button>
-        </div>
-        <div>
-            <p>Rangos numericos:</p>
-            <ul>
-                <li>Facil: -10 a 20</li>
-                <li>Medio: -20 a 40</li>
-                <li>Dificil: -40 a 80</li>
-            </ul>
-        </div>
-    </div>
+    <canvas id="matrix-bg"></canvas>
 
-    <div id="game-screen" style="display: none;">
-        <div id="number-display"></div>
-    </div>
+    <main class="core-container">
 
-    <div id="input-screen" style="display: none;">
-        <h2>¿Cual es la suma final?</h2>
-        <input type="number" id="user-answer" autofocus>
-        <button id="submit-answer">Confirmar</button>
-    </div>
+        <div id="setup-screen">
+            <h1>Memoria y Calculo</h1>
+            <div class="input-group">
+                <label for="num-count">Cantidad de números:</label>
+                <input type="number" id="num-count" value="5" min="2">
+            </div>
 
-    <div id="result-screen" style="display: none;">
-        <div id="result-message"></div>
-        <button id="restart-game">Jugar de Nuevo</button>
-    </div>
+            <div class="input-group">
+                <label>Nivel de dificultad (Velocidad):</label>
+                <div class="difficulty-options speed-selection">
+                    <button type="button" class="option-btn active" data-time="2">Fácil (2 s)</button>
+                    <button type="button" class="option-btn" data-time="1.5">Medio (1.5 s)</button>
+                    <button type="button" class="option-btn" data-time="1">Difícil (1 s)</button>
+                </div>
+            </div>
 
-    <script src="main.js"></script>
+            <div class="input-group">
+                <label>Rango de números:</label>
+                <div class="difficulty-options range-selection">
+                    <button type="button" class="option-btn active" data-range="easy">Fácil (-10 a 20)</button>
+                    <button type="button" class="option-btn" data-range="medium">Medio (-20 a 40)</button>
+                    <button type="button" class="option-btn" data-range="hard">Difícil (-40 a 80)</button>
+                </div>
+            </div>
+
+            <div class="input-group flex-row">
+                <label for="allow-negatives">Permitir números negativos</label>
+                <label class="switch">
+                    <input type="checkbox" id="allow-negatives" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <button id="start-game-btn" class="primary-btn">Jugar</button>
+        </div>
+
+        <div id="game-screen" style="display: none;">
+            <div id="number-display"></div>
+        </div>
+
+        <div id="input-screen" style="display: none;">
+            <h2>¿Cual es la suma final?</h2>
+            <input type="number" id="user-answer" autofocus>
+            <button id="submit-answer">Confirmar</button>
+        </div>
+
+        <div id="result-screen" style="display: none;">
+            <div id="result-message"></div>
+            <button id="restart-game">Jugar de Nuevo</button>
+        </div>
+    </main>
+
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
