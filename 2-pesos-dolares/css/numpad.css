@@ -1,0 +1,39 @@
+.display-container {
+    background: #ffffff;
+    border: 2px solid #000000;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.display-container input {
+    border: none;
+    font-size: 1.5rem;
+    width: 100%;
+    text-align: right;
+    outline: none;
+}
+
+.numpad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.num-btn {
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: 1px solid #000000;
+    background: #ffffff;
+}
+
+.calc-action {
+    grid-column: span 2;
+    padding: 15px;
+    background: #38a169;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}

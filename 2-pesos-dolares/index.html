@@ -19,27 +19,42 @@
         </div>
 
         <div class="container">
-            <h1>Conversor de Pesos a Dolares</h1>
+            <div class="converter-box">
+                <div class="left-section">
+                    <h1 class="main-title">conversor de <span class="ars">ARS</span> a <span class="usd">USD</span></h1>
+                    
+                    <div class="numpad-box">
+                        <div class="display-container">
+                            <span class="currency-symbol">$</span>
+                            <input type="number" id="ars-input" placeholder="0" min="0">
+                        </div>
+                        <div class="numpad">
+                            <button class="num-btn">1</button>
+                            <button class="num-btn">2</button>
+                            <button class="num-btn">3</button>
+                            <button class="num-btn"></button>
 
-            <div>
-                <label for="ars-input">Monto en pesos (ARS):</label>
-                <input type="number" id="ars-input" placeholder="Ej: 15000" min="0">
-                <button id="calc-btn">Calcular</button>
+                            <button class="num-btn">4</button>
+                            <button class="num-btn">5</button>
+                            <button class="num-btn">6</button>
+                            <button class="num-btn"></button>
+
+                            <button class="num-btn">7</button>
+                            <button class="num-btn">8</button>
+                            <button class="num-btn">9</button>
+                            <button class="num-btn">C</button>
+
+                            <button class="num-btn"></button>
+                            <button class="num-btn">0</button>
+                            <button class="calc-action" id="calc-btn">OK</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-section" id="dollar-cards-container">
+                    <div class="card-placeholder">Cargando cotizaciones...</div>
+                </div>
             </div>
-
-            <table id="results-table">
-                <thead>
-                    <tr>
-                        <th>Tipo de Dolar</th>
-                        <th>Compra</th>
-                        <th>Venta</th>
-                        <th>USD (Compra)</th>
-                        <th>USD (Venta)</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                </tbody>
-            </table>
         </div>
 
         <div class="side-buttons right">

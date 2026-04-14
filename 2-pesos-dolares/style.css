@@ -1,113 +1,76 @@
-body {
-    border-left: 100px solid #CAD3D8;
-    border-right: 100px solid #CAD3D8;
+@import url('css/atm.css');
+@import url('css/numpad.css');
+@import url('css/cards.css');
 
-    box-shadow:
-        inset 12px 0 0 0 #ffffff,
-        inset -12px 0 0 0 #ffffff,
-
-        inset 16px 0 0 0 #000000,
-        inset -16px 0 0 0 #000000,
-
-        inset 76px 0 0 0 #A9B4BA,
-        inset -76px 0 0 0 #A9B4BA,
-
-        inset 80px 0 0 0 #000000,
-        inset -80px 0 0 0 #000000;
-
-    padding-right: 80px;
-    padding-left: 80px;
-
+.converter-box {
+    border: 1px solid #3182ce;
     width: 100%;
-    min-height: 100vh;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
-main {
-    border-left: 30px solid #A9B4BA;
-    border-right: 30px solid #A9B4BA;
-    border-bottom: 20px solid #A9B4BA;
-
-    padding-left: 70px;
-    padding-right: 70px;
-    padding-top: 60px;
-
-    background: linear-gradient(to top,
-            #A9B4BA 20%,
-            #CAD3D8 50%);
-
-    margin-bottom: 76px;
-    min-height: calc(100vh - 76px);
-    box-sizing: border-box;
+    height: 100%;
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 40px;
     position: relative;
 }
 
-.side-buttons {
-    position: absolute;
-    top: 250px;
-    bottom: 0;
-    width: 40px;
+.left-section {
+    border: 1px solid #3182ce;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 70px;
     align-items: center;
-    z-index: 10;
-}
-
-.side-buttons.left {
-    left: 0;
-}
-
-.side-buttons.right {
-    right: 0;
-}
-
-.atm-btn {
-    width: 75px;
-    height: 60px;
-    background: #cad3d8;
-    border: 4px solid #1a1c1d;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.atm-btn:active {
-    background: #a9b4ba;
-}
-
-
-.container {
+    gap: 30px;
     flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    border-radius: 50px;
-
-    box-shadow:
-        inset 0 0 0 10px #ffffff,
-        inset 0 0 0 14px #000000,
-        inset 0 0 0 36px #A9B4BA,
-        inset 0 0 0 40px #000000;
-
-    background-color: #ffffff;
 }
 
-footer {
-    border-top: 4px solid #000000;
+.main-title {
+    border: 1px solid #3182ce;
+    width: 100%;
+    max-width: 600px;
+    font-family: sans-serif;
+    font-size: 2rem;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    font-weight: 300;
+}
 
-    position: fixed;
-    bottom: 0;
-    left: 180px;
-    right: 180px;
-    height: 76px;
-    z-index: 100;
+.ars,
+.usd {
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 2px #000000;
+    background-clip: text;
+    color: transparent;
+    font-weight: 900;
+    font-size: 3rem;
+}
 
-    background: linear-gradient(to bottom,
-            #A9B4BA 50%,
-            #CAD3D8 50%);
+.ars {
+    background-image: url('img/arg.png');
+}
+
+.usd {
+    background-image: url('img/eeuu.png');
+}
+
+.numpad-box {
+    border: 1px solid #3182ce;
+    width: 100%;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 80px;
+}
+
+.right-section {
+    border: 1px solid #00ff22;
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
 }
