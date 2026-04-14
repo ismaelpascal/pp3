@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "serve . -p 5555"
+    "dev": "vite --port 5555 --host"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.33.0",
   "devDependencies": {
-    "serve": "^14.2.6"
+    "vite": "^8.0.8"
   }
 }
