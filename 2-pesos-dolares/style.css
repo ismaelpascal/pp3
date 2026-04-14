@@ -3,7 +3,6 @@
 @import url('css/cards.css');
 
 .converter-box {
-    border: 1px solid #3182ce;
     width: 100%;
     height: 100%;
     display: flex;
@@ -14,7 +13,6 @@
 }
 
 .left-section {
-    border: 1px solid #3182ce;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,7 +21,6 @@
 }
 
 .main-title {
-    border: 1px solid #3182ce;
     width: 100%;
     max-width: 600px;
     font-family: sans-serif;
@@ -56,7 +53,6 @@
 }
 
 .numpad-box {
-    border: 1px solid #3182ce;
     width: 100%;
     max-width: 320px;
     display: flex;
@@ -66,7 +62,6 @@
 }
 
 .right-section {
-    border: 1px solid #00ff22;
     flex: 1;
     max-width: 500px;
     display: flex;
