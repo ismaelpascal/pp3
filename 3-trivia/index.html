@@ -1,45 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>trivia</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <title>Trivia de Cortina</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="setup-screen">
-        <h1>Categoria:</h1>
-        <select name="categoria" id="categoria">
-            <option value="">Seleccione</option>
-            <option value="Historia">Historia</option>
-            <option value="Geografía">Geografía</option>
-            <option value="Ciencia">Ciencia</option>
-            <option value="Deportes">Deportes</option>
-            <option value="Tecnología">Tecnología</option>
-            <option value="Matemática">Matemática</option>
-        </select>
-        <button id="start-btn">Iniciar</button>
+    <div id="curtain-container">
+        <div class="curtain-panel left-panel"></div>
+        <div class="curtain-panel right-panel"></div>
     </div>
 
-    <div id="game-screen" style="display: none;">
-        <h2 id="pregunta-numero"></h2>
-        <p id="pregunta-texto"></p>
-        <div id="opciones-container"></div>
-        <div id="feedback-container"></div>
-        <button id="next-btn" style="display: none;">Siguiente Pregunta</button>
-    </div>
+    <main id="app">
+        <div id="setup-screen">
+            <h1>Nueva Trivia</h1>
+            <p style="margin-bottom: 20px;">Selecciona una categoría para empezar.</p>
+            <select name="categoria" id="categoria">
+                <option value="">-- Elige una categoría --</option>
+                <option value="Historia">Historia</option>
+                <option value="Geografía">Geografía</option>
+                <option value="Ciencia">Ciencia</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Tecnología">Tecnología</option>
+                <option value="Matemática">Matemática</option>
+            </select>
+            <button id="start-btn">Iniciar</button>
+        </div>
 
-    <div id="result-screen" style="display: none;">
-        <h1>Resumen de la Partida</h1>
-        <p>Total de preguntas: <span id="total-preguntas"></span></p>
-        <p>Correctas: <span id="correctas-count" style="color: #2ecc71;"></span></p>
-        <p>Incorrectas: <span id="incorrectas-count" style="color: #e74c3c;"></span></p>
-        <button id="restart-game">Jugar de Nuevo</button>
-    </div>
+        <div id="game-screen" style="display: none;">
+            <h2 id="pregunta-numero" style="margin-bottom: 20px; font-size: 18px; color: #555;"></h2>
+            <div id="pregunta-container">
+                <p id="pregunta-texto" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></p>
+                <div id="opciones-container"></div>
+                <div id="feedback-container"></div>
+                <button id="next-btn" style="display: none; margin-top: 20px;">Siguiente Pregunta</button>
+            </div>
+        </div>
 
-    <script src="main.js"></script>
+        <div id="result-screen" style="display: none;">
+            <h1>Fin de la Partida</h1>
+            <p>Total de preguntas: <span id="total-preguntas"></span></p>
+            <p>Correctas: <span id="correctas-count" style="color: green; font-weight: bold;"></span></p>
+            <p>Incorrectas: <span id="incorrectas-count" style="color: red; font-weight: bold;"></span></p>
+            <button id="restart-game" style="margin-top: 20px;">Volver a Empezar</button>
+        </div>
+    </main>
+
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>
