@@ -1,34 +1,162 @@
 #game-screen {
+    position: relative;
     z-index: 10;
-    width: 90%;
-    max-width: 600px;
-    background: #fff;
-    color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background: transparent;
+    overflow: hidden;
+}
+
+/* Background Theater Animation */
+#theater-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #3d0a0a 0%, #000 100%);
+    overflow: hidden;
+}
+
+/* Floor with Perspective */
+#theater-background::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, #220000, transparent);
+    transform-origin: bottom;
+    transform: perspective(300px) rotateX(45deg);
+    z-index: 1;
+}
+
+
+/* Layout Elements */
+#pregunta-numero {
+    font-size: 1.2rem;
+    color: #ffd700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+#pregunta-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 800px;
+}
+
+#pregunta-texto {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    text-align: center;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    animation: fadeInDown 0.6s ease-out;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#bottom-controls {
+    width: 100%;
+    max-width: 1000px;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    padding: 30px;
+    border-radius: 20px 20px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 #opciones-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
 }
 
 #opciones-container button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
+    padding: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border-radius: 4px;
+    text-align: center;
 }
 
-#opciones-container button:hover {
-    background: #eee;
+#opciones-container button:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffd700;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#opciones-container button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+#opciones-container button.correct {
+    background: #15803d !important;
+    border-color: #22c55e !important;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.4);
+}
+
+#opciones-container button.incorrect {
+    background: #991b1b !important;
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
 }
 
 #feedback-container {
-    margin: 15px 0;
-    font-weight: bold;
+    text-align: center;
+    min-height: 40px;
+}
+
+.correct-text { color: #4ade80; font-size: 1.2rem; font-weight: bold; }
+.incorrect-text { color: #f87171; font-size: 1.2rem; font-weight: bold; }
+
+#next-btn {
+    background: #ffd700;
+    color: #000;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#next-btn:hover {
+    background: #ffea00;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+@media (max-width: 600px) {
+    #opciones-container {
+        grid-template-columns: 1fr;
+    }
 }
