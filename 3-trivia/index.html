@@ -14,6 +14,8 @@
         <div class="curtain-panel right-panel"></div>
     </div>
 
+    <div id="money-counter">$0</div>
+
     <main id="app">
         <div id="setup-screen">
             <h1>Nueva Trivia</h1>
@@ -31,12 +33,16 @@
         </div>
 
         <div id="game-screen" style="display: none;">
-            <h2 id="pregunta-numero" style="margin-bottom: 20px; font-size: 18px; color: #555;"></h2>
+            <div id="theater-background"></div>
+            <h2 id="pregunta-numero"></h2>
+
             <div id="pregunta-container">
-                <p id="pregunta-texto" style="font-size: 20px; font-weight: bold; margin-bottom: 20px;"></p>
+                <p id="pregunta-texto"></p>
+            </div>
+            <div id="bottom-controls">
                 <div id="opciones-container"></div>
                 <div id="feedback-container"></div>
-                <button id="next-btn" style="display: none; margin-top: 20px;">Siguiente Pregunta</button>
+                <button id="next-btn" style="display: none;">Siguiente Pregunta</button>
             </div>
         </div>
 

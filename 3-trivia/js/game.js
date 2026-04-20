@@ -5,10 +5,12 @@ let currentQuestions = [];
 let currentIndex = 0;
 let correctas = 0;
 let incorrectas = 0;
+let money = 0;
 
 const setupScreen = document.getElementById("setup-screen");
 const gameScreen = document.getElementById("game-screen");
 const resultScreen = document.getElementById("result-screen");
+const moneyDisplay = document.getElementById("money-counter");
 
 const categoriaSelect = document.getElementById("categoria");
 const startBtn = document.getElementById("start-btn");
@@ -23,6 +25,12 @@ const totalPreguntasSpan = document.getElementById("total-preguntas");
 const correctasCountSpan = document.getElementById("correctas-count");
 const incorrectasCountSpan = document.getElementById("incorrectas-count");
 const restartBtn = document.getElementById("restart-game");
+
+function updateMoneyDisplay() {
+    moneyDisplay.textContent = `$${money.toLocaleString()}`;
+    moneyDisplay.classList.add('pulse');
+    setTimeout(() => moneyDisplay.classList.remove('pulse'), 300);
+}
 
 export function initGame() {
     fetch("trivia.json")
@@ -78,6 +86,8 @@ function iniciarPartida(nombreCategoria) {
     currentIndex = 0;
     correctas = 0;
     incorrectas = 0;
+    money = 0;
+    updateMoneyDisplay();
 
     gameScreen.style.display = "block";
     renderizarPregunta();
@@ -112,15 +122,16 @@ function verificarRespuesta(opcionSeleccionada, botonSeleccionado) {
 
     if (opcionSeleccionada === preguntaActual.correcta) {
         correctas++;
-        botonSeleccionado.style.backgroundColor = "#d1fae5";
-        botonSeleccionado.style.color = "#065f46";
-        feedbackContainer.innerHTML = `<p style="color: #065f46;">¡Correcto!</p>`;
+        money += 10000;
+        botonSeleccionado.classList.add('correct');
+        feedbackContainer.innerHTML = `<p class="correct-text">¡Correcto! +$10,000</p>`;
     } else {
         incorrectas++;
-        botonSeleccionado.style.backgroundColor = "#fee2e2";
-        botonSeleccionado.style.color = "#991b1b";
-        feedbackContainer.innerHTML = `<p style="color: #991b1b;">Incorrecto. La respuesta era: ${preguntaActual.correcta}</p>`;
+        money = Math.max(0, money - 5000);
+        botonSeleccionado.classList.add('incorrect');
+        feedbackContainer.innerHTML = `<p class="incorrect-text">Incorrecto. -$5,000. La respuesta era: ${preguntaActual.correcta}</p>`;
     }
+    updateMoneyDisplay();
     nextBtn.style.display = "block";
 }
 
