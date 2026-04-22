@@ -1,0 +1,42 @@
+erDiagram
+    CARRERAS ||--o{ ALUMNOS : "tienen"
+    CARRERAS ||--o{ MATERIAS : "tienen"
+    PROFESORES ||--o{ MATERIAS : "dictan"
+    ALUMNOS ||--o{ NOTAS : "obtienen"
+    MATERIAS ||--o{ NOTAS : "registran"
+
+    CARRERAS {
+        int id_carrera PK
+        string nombre
+    }
+
+    PROFESORES {
+        int id_profesor PK
+        string nombre
+        string email
+    }
+
+    MATERIAS {
+        int id_materia PK
+        string nombre
+        string curso
+        int id_profesor FK
+        int id_carrera FK
+    }
+
+    ALUMNOS {
+        int id_alumno PK
+        string nombre
+        string dni UK
+        string email UK
+        int id_carrera FK
+    }
+
+    NOTAS {
+        int id_nota PK
+        int id_alumno FK
+        int id_materia FK
+        decimal calificacion
+        date fecha
+    }
+    
