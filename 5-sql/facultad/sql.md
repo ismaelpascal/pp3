@@ -1,22 +1,23 @@
-# Estructura
-
-## Crear estructura db
+# Contruir db, tabla y cargar datos
 
 ```sql
- -- 1. Crear tabla Carreras
+-- Crear db
+CREATE DATABASE IF NOT EXISTS facultad;
+
+USE facultad;
+
+-- Crear tablas ------------------------------------------------------------------
 CREATE TABLE carreras (
     id_carrera INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL
 );
-
--- 2. Crear tabla Profesores
+-- -------------------------------------------------------------------------------
 CREATE TABLE profesores (
     id_profesor INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE
 );
-
--- 3. Crear tabla Alumnos (Depende de Carreras)
+-- -------------------------------------------------------------------------------
 CREATE TABLE alumnos (
     id_alumno INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
@@ -26,8 +27,7 @@ CREATE TABLE alumnos (
     CONSTRAINT fk_alumno_carrera FOREIGN KEY (id_carrera) 
         REFERENCES carreras(id_carrera) ON DELETE SET NULL
 );
-
--- 4. Crear tabla Materias (Depende de Profesores y Carreras)
+-- -------------------------------------------------------------------------------
 CREATE TABLE materias (
     id_materia INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
@@ -39,8 +39,7 @@ CREATE TABLE materias (
     CONSTRAINT fk_materia_carrera FOREIGN KEY (id_carrera) 
         REFERENCES carreras(id_carrera) ON DELETE CASCADE
 );
-
--- 5. Crear tabla Notas (Depende de Alumnos y Materias)
+-- -------------------------------------------------------------------------------
 CREATE TABLE notas (
     id_nota INT PRIMARY KEY AUTO_INCREMENT,
     id_alumno INT,
@@ -52,23 +51,15 @@ CREATE TABLE notas (
     CONSTRAINT fk_nota_materia FOREIGN KEY (id_materia) 
         REFERENCES materias(id_materia) ON DELETE CASCADE
 );
-```
+-- -------------------------------------------------------------------------------
 
-## Migraciones de datos de prueba
-
-### cargar carreras
-
-```sql
+-- Incertar datos ----------------------------------------------------------------
 INSERT INTO carreras (nombre) VALUES 
 ('Tecnicatura Superior en Análisis y Desarrollo de Software'),
 ('Profesorado de Inglés'),
 ('Profesorado de educación secundaria en Econimía'),
 ('Tecnicatura Superior en Administración contable');
-```
-
-### Cargar profesores
-
-```sql
+-- -------------------------------------------------------------------------------
 DELIMITER //
 CREATE PROCEDURE CargarProfesores()
 BEGIN
@@ -80,11 +71,7 @@ BEGIN
     END WHILE;
 END //
 DELIMITER ;
-CALL CargarProfesores();
-```
-
-### cargar materias
-```sql
+-- -------------------------------------------------------------------------------
 DELIMITER //
 CREATE PROCEDURE CargarMaterias()
 BEGIN
@@ -107,12 +94,7 @@ BEGIN
     END WHILE;
 END //
 DELIMITER ;
-CALL CargarMaterias();
-```
-
-### cargar alumnos
-
-```sql
+-- -------------------------------------------------------------------------------
 DELIMITER //
 CREATE PROCEDURE CargarAlumnos()
 BEGIN
@@ -129,11 +111,7 @@ BEGIN
     END WHILE;
 END //
 DELIMITER ;
-CALL CargarAlumnos();
-```
-
-### cargar notas
-```sql
+-- -------------------------------------------------------------------------------
 DELIMITER //
 CREATE PROCEDURE CargarNotasAleatorias()
 BEGIN
@@ -146,5 +124,17 @@ BEGIN
     FROM alumnos a;
 END //
 DELIMITER ;
+-- -------------------------------------------------------------------------------
+
+-- poblado de datos --------------------------------------------------------------
+CALL CargarProfesores();
+CALL CargarMaterias();
+CALL CargarAlumnos();
 CALL CargarNotasAleatorias();
+
+-- borar procesos ----------------------------------------------------------------
+DROP PROCEDURE IF EXISTS CargarProfesores;
+DROP PROCEDURE IF EXISTS CargarMaterias;
+DROP PROCEDURE IF EXISTS CargarAlumnos;
+DROP PROCEDURE IF EXISTS CargarNotasAleatorias;
 ```
