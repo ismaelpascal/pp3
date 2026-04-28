@@ -1,19 +1,33 @@
 
 <?php
 
-echo "Hola mundo";
+echo "Hola mundo<br>";
 
-$servidor: "localhost";
-$usuario: "root";
-$contrasena: "root";
-$base_datos: "db";
+$servidor = "db";
+$usuario = "root";
+$contrasena = "root";
+$base_datos = "users";
 
-$conexion = mysql_connect($servidor, $usuario, $contrasena, $base_datos);
+$conexion = mysqli_connect($servidor, $usuario, $contrasena, $base_datos);
 
 if (!$conexion) {
-    die("fallo: " . mysql_connect_error());
+    die("fallo: " . mysqli_connect_error());
 }
 
-echo "conectado";
+echo "conectado<br>";
 
-$sql = "SELECT id_usuario, nombre, "
+$sql = "SELECT id_usuario, nombre, email FROM usuarios";
+$resultado = mysqli_query($conexion, $sql);
+
+if (mysqli_num_rows($resultado) > 0) {
+    echo "<ul>";
+    while($row = mysqli_fetch_assoc($resultado)) {
+        echo "<li>ID: " . $row["id_usuario"]. " - Nombre: " . $row["nombre"]. " - Email: " . $row["email"]. "</li>";
+    }
+    echo "</ul>";
+} else {
+    echo "0 resultados";
+}
+
+mysqli_close($conexion);
+?>
